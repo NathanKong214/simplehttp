@@ -1,0 +1,17 @@
+Simple HTTP proxy written as classroom exercise for ECE4436A at Western University.
+
+Description of program:
+
+A simple multi-threaded HTTP Proxy and cache. The main thread waits for incoming connections
+on port 8888 using accept(). Once a connection is made, a new thread is dispatched to handle
+the request. A binary-tree cache is used to store the result of GET requests. If a resource 
+can be found in the cache, no requests to external servers are made. If the resource cannot
+be located, then a new outbound GET request is performed and the result is sent back to the
+client. Threading is achieved using POSIX threads, and a mutex is used to protect the cache
+from threading errors.
+
+NOTE: No caps are placed on cache size, # of threads or # of open sockets.
+
+This program has been tested on Mac OSX 10.8, and Ubuntu 12.04.
+
+Compile with: gcc simplehttp.c -lpthread
